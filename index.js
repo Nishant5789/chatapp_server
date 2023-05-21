@@ -5,7 +5,7 @@ const { default: mongoose } = require('mongoose');
 
 const app = express();
 const authRoutes = require("./routes/auth");
-// const messageRoutes = require("./routes/messages");
+const messageRoutes = require("./routes/messages");
 require('dotenv').config();
 
 app.use(cors());
@@ -13,10 +13,10 @@ app.use(express.json());
 
 
 app.use("/api/auth", authRoutes);
-// app.use("/api/messages", messageRoutes);
+app.use("/api/messages", messageRoutes);
 
 
-mongoose.connect(`mongodb://127.0.0.1:27017/chatapp` , {
+mongoose.connect(process.env.MONGO_URL , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
